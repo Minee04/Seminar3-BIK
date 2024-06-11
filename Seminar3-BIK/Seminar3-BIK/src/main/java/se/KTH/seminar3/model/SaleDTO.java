@@ -32,7 +32,7 @@ public class SaleDTO {
      * @return The list of items
     */
     public ArrayList<ItemDTO> getItemList() {
-        return itemList;
+        return new ArrayList<ItemDTO>(itemList);
     }
     /**
      * Gets the total price of sale

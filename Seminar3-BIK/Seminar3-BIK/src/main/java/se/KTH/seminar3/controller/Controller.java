@@ -1,6 +1,7 @@
 package se.KTH.seminar3.controller;
 
 
+import java.util.ArrayList;
 import se.KTH.seminar3.integration.AccountingHandler;
 import se.KTH.seminar3.integration.InventoryHandler;
 import se.KTH.seminar3.integration.SaleLog;
@@ -69,14 +70,14 @@ public class Controller {
     * @return <code>null</code> The object holding the saleInformation. If there is no sale
     */
     public SaleDTO endSale(){
-       if(sale != null){
+     if(sale != null){
            SaleDTO currentSale = sale.updateProducts();
-           return currentSale;           
-       }
-            else
-                return null;
-      
-   }
+        return new SaleDTO(new ArrayList<ItemDTO>(currentSale.getItemList()), currentSale.getTotalPrice(), currentSale.getTotalVAT());           
+     }
+          else
+              return null;
+    }
+
      /**
      * registers a payment for the sale
      * @param paymentAmount The amount paid by the customer.

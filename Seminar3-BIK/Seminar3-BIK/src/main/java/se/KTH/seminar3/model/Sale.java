@@ -32,7 +32,7 @@ public class Sale {
      * @return the item list in the sale
      */
     public ArrayList<ItemDTO> getListOfItems() {
-        return this.itemList; 
+        return new ArrayList<ItemDTO>(itemList);
     }
 
     
@@ -99,7 +99,7 @@ public class Sale {
       */
     public SaleDTO updateProducts() {
         runningTotal();
-        SaleDTO finalizedSale = new SaleDTO(this.itemList, this.totalPrice, this.totalVAT);
+        SaleDTO finalizedSale = new SaleDTO(new ArrayList<ItemDTO>(this.itemList), this.totalPrice, this.totalVAT);
         return finalizedSale;
     }
      
@@ -118,7 +118,7 @@ public class Sale {
      * @return The object holding the final sales information.
       */
     public SaleDTO SaleInformation(Payment payment, InventoryHandler invHandler) {
-        SaleDTO finalizedSale = new SaleDTO(this.itemList, this.totalPrice, this.totalVAT);
+        SaleDTO finalizedSale = new SaleDTO(new ArrayList<ItemDTO>(this.itemList), this.totalPrice, this.totalVAT);
         invHandler.updateInventory(finalizedSale);
         return finalizedSale;
     }
